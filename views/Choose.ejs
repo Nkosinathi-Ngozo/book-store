@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose</title>
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+<body class="choose-back">
+    <img src="/images/logo.webp" class="logo">
+
+    <section class="Sell-box">
+
+
+        <br>
+        <br>
+        <div class="sell">
+
+            <h2 class="WOP">TURN YOUR OLD BOOKS INTO CASH</h2><br>
+            <h2>Are you looking to sell your books online?<br> In this website you can sell your old or unwanted
+                books<br> and earn money in return</h2>
+            <br>
+            <%if(id){%>
+                <A href="products/sell/<%=`${id}`%>" id="sell1">CLICK TO SELL YOUR BOOKS</A>
+            <%}else{%>
+                <A href="products/sell" id="sell1">CLICK TO SELL YOUR BOOKS</A>
+            <%}%>
+            
+        </div>
+        
+
+
+    </section>
+
+    <br>
+    <br>
+
+    <section class="buy-box">
+        <div class="buy">
+            <h2>BUY USED BOOKS</h2>
+            <br>
+            <h2>Are you looking to buy used books online? <br> In this website you can buy used books</h2>
+            <BR>
+            <A href="products" id="buy1">CLICK TO BUY BOOKS</A>
+
+        </div>
+
+
+    </section>
+    <br>
+    <br>
+    <section class="buy-box">
+        <a  id="buy1" href="/">home</a>
+    </section>
+    
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, 
+body{
+    font-family: 'roboto';
+    background-color: #1b1b1b;
+}
+@font-face {
+    font-family: Quicksand;
+    src: url(../fonts/Quicksand-Regular.woff2);
+}
+:root{
+    --main-color: rgb(0, 255, 217);
+    --secondary-color: #1b1b1b;
+}
+.main-content{
+    margin-top: 30vh;
+    text-align: center;
+}
+.home-button{  
+    margin-top: 3vh;
+    
+}
+.button{
+    text-decoration: none;
+    color: #fff;
+    border-radius: .7rem;
+    background-color: var(--main-color);
+    padding: .5rem;
+}
+.button:hover{
+    color: var(--secondary-color);
+}
+.error-number{
+    font-size: 6rem;
+    color: red;
+}
+h1, h4{
+    color: #fff;
+}

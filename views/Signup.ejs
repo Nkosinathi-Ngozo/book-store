@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <script src="https://kit.fontawesome.com/4053b2de83.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="sign">
+
+    <section class="SignUp-Box">
+        <h1>Sign Up</h1> <br>
+        <form class="form-signup" action="/auth/register" method="post">
+
+            <input type="text" name="first_name" placeholder="First Name">
+            
+            <input type="text" name="last_name" placeholder="Last Name">
+
+            <input type="text" name="username" placeholder="Username">
+
+            <input type="email" name="email" placeholder="Email">
+
+            <input type="tel" name="phone_number" placeholder="Phone Number/ Whatsapp">
+
+            <input type="password" name="password" placeholder="password">
+
+            <input type="password" name="confirm" placeholder="Confirm Password">
+
+            <button type="submit"  class="submit-button">submit</button>
+        </form>
+        <br>
+        <p>By clicking the Sign up button, you agree to our <br> <a href="#">Terms And Conditions</a> and <a
+                href="Login">Policy And Privacy</a></p>
+
+    </section>
+    <br>
+    <p class="paragraph-2">Already have an account? <a href="Login">Login here</a></p>
+    <%if(data.message){%>
+    <div class="popup">
+        <div class="overlay"></div>
+        <div class="popup-content">
+            <h2>this is popup title</h2>
+            <%for(let i = 0; i < data.message.length; i++){%>
+            <p><%-data.message[i]%></p>
+            <%}%>
+            <div class="controls">
+                <form action="">
+                    <button class="close-btn">close</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <%}%>
+    <script>
+        // const createPopup  = (id) =>{
+        //     let popupNode = document.querySelector(id);
+        //     const overlay = popupNode.querySelector('.overlay');
+        //     const closeBtn = popupNode.querySelector('.close-btn');
+
+        //     const openPopup = () =>{
+        //         popupNode.classList.add('active')
+        //     }
+
+        //     const closePopup = () =>{
+        //         popupNode.classList.add('active')
+        //     }
+        //     overlay.addEventListener('click', closePopup);
+        //     closeBtn.addEventListener('click', closePopup);
+        //     return openPopup;
+        // }
+
+        // let popup = createPopup('#popup');
+        // document.querySelector('#open-popup').addEventListener('click', popup);
+        // document.querySelector('.submit-button').addEventListener('click', popup);
+        
+    </script>
+
+</body>
+
+</html>

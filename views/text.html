@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../public/css/style.css">
+</head>
+<body>
+    <div class="center">
+        <button id="open-popup">open popup</button>
+    </div>
+    <div class="popup" id="popup">
+        <div class="overlay"></div>
+        <div class="popup-content">
+            <h2>this is popup title</h2>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. A totam quos ullam quaerat vero voluptate ducimus eaque culpa earum enim, nulla rerum aperiam quibusdam quasi, porro odio voluptatum quo saepe?</p>
+            <div class="controls">
+                    <button class="close-btn">close</button>
+                    <button class="submit-btn">close</button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        function createPopup(id){
+            let popupNode = document.querySelector(id);
+            let overlay = popupNode.querySelector('.overlay');
+            let closeBtn = popupNode.querySelector('.close-btn');
+
+            function openPopup() {
+                popupNode.classList.add('active')
+            }
+
+            function closePopup()  {
+                popupNode.classList.remove('active')
+            }
+            overlay.addEventListener('click', closePopup);
+            closeBtn.addEventListener('click', closePopup);
+            return openPopup;
+        }
+
+        let popup = createPopup('#popup');
+        document.querySelector('#open-popup').addEventListener('click', popup);
+    </script>
+</body>
+</html>

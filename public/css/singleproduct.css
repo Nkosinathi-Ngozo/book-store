@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+img{
+    height: 15rem;
+    width: 15rem;
+}
+.content{
+    margin: 5rem;
+}
+.container{
+    text-align: center;
+    border: solid #1eecb5;
+    padding: 1rem;
+}
