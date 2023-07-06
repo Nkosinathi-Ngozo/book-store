@@ -37,7 +37,7 @@ const verifyToken = (req, res, next) => {
                     res.cookie('jwt', '', {
                         maxAge: 1
                     });
-                    res.redirect('/home');
+                    res.redirect('/');
                     // res.status(403)
                     // .json('token is not valid');
                 }// if there's an error 
@@ -57,7 +57,7 @@ const verifyToken = (req, res, next) => {
 const verifyTokenAndAuthorization = 
 (req, res, next) => {
     verifyToken(req, res, () =>{
-        const findId = req.params.id;
+        const findId = req.params.uuid;
                     
         if(req.user.id === findId ||
              req.user.isAdmin){

@@ -211,20 +211,17 @@ router.get('/users/find/:uuid', async ( req, res ) =>{
 
     const user = await User.findOne({
         where:{uuid}, 
-        include: 'products'
     });
 
-    // const userId = user.id;
+    const id = user.id;
+    console.log(user);
 
-    // const products = await Products.findAll({
-    //     where:{userId}
-    // });
-
-    // for(let i = 0; i < products.length; i++){
-    //     console.log(products[i], 'hsv');
-    // }
-
-    res.json(user);
+    const user_products = await User.findAll({
+        where:{id}, 
+        include: 'products'
+    });
+    
+    res.json(user_products);
 
 });
 
@@ -246,7 +243,7 @@ router.get('/', async (req,res) =>{
                 order: [
                     ['createdAt', 'DESC'],
                 ],
-            });
+            },{include: User});
         }
         else if(qModule){
             console.log(req.query.module);
@@ -254,7 +251,8 @@ router.get('/', async (req,res) =>{
                 module:{
                     $in: [qModule],
                 },
-            });
+                
+            }, {include: User});
         }
         else{
             //products = await Products.findAll({include: ['User']});

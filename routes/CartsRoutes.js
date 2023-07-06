@@ -3,9 +3,9 @@ const {checkToken, verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin
 const {Products, Carts} = require('../models');
 
 //!CREATE
-router.post('/:id/:uuid', verifyTokenAndAuthorization, async (req, res)=>{    
+router.post('/:uuid/:id', verifyTokenAndAuthorization, async (req, res)=>{    
 
-    const uuid = req.params.uuid;
+    const uuid = req.params.id;
     console.log(uuid);
     
 
@@ -13,7 +13,7 @@ router.post('/:id/:uuid', verifyTokenAndAuthorization, async (req, res)=>{
         const product = await Products.findOne({
             where: {uuid}
         });
-
+        console.log(product);
 
         const {book_title, book_author, book_year, price, img} = product;
 
@@ -38,10 +38,10 @@ router.post('/:id/:uuid', verifyTokenAndAuthorization, async (req, res)=>{
 });
 
 //!UPDATE
-router.put('/:id/:uuid', verifyTokenAndAuthorization, async (req,res) => {
+router.put('/:uuid/:id', verifyTokenAndAuthorization, async (req,res) => {
     
     try{
-        const uuid = req.params.uuid;//id in url
+        const uuid = req.params.id;//id in url
         
         const UpdatedCart = await Carts.update(req.body,{
             where: {uuid},//checls for same id in database
@@ -71,7 +71,7 @@ router.put('/:id/:uuid', verifyTokenAndAuthorization, async (req,res) => {
 
 //! DELETE
 router.delete('/:id/:uuid', verifyTokenAndAuthorization, async (req, res) =>{
-    const uuid = req.params.uuid;
+    const uuid = req.params.id;
     try{
         const cartToDelete = await Carts.findOne({
             where: {uuid},
