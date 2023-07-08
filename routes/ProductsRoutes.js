@@ -228,7 +228,7 @@ router.get('/users/find/:uuid', async ( req, res ) =>{
 //! GET All PRODUCTS
 router.get('/', async (req,res) =>{
     const qNew = req.query.new;
-    const qModule = req.query.module;
+    const qTitle = req.query.book_title;
     const Year = new Date().getFullYear();
     const sevenDaysAgo = new Date(new Date().setDate(new Date().getDate() - 7));
     try{
@@ -243,28 +243,28 @@ router.get('/', async (req,res) =>{
                 order: [
                     ['createdAt', 'DESC'],
                 ],
-            },{include: User});
+                include: User
+            });
         }
-        else if(qModule){
-            console.log(req.query.module);
+        else if(qTitle){
+            console.log(qTitle + "");
             products = await Products.findAll({
-                module:{
-                    $in: [qModule],
-                },
-                
-            }, {include: User});
+                where:{book_title: qTitle},
+                include: User
+            });
         }
         else{
-            //products = await Products.findAll({include: ['User']});
             products = await Products.findAll({include: User});
         }
         console.log(products);
-        res.render('testimages', {
+        /*res.render('testimages', {
             data:{
                 images:products
             }
-        });
-        //return res.status(200).json(products);
+        });*/
+
+
+        return res.status(200).json(products);
     }catch(err){
         console.log(err);
         return res.status(500).json("An error occured");
@@ -272,7 +272,7 @@ router.get('/', async (req,res) =>{
 });
 
 
-router.get('/sell/:uuid', verifyToken, async (req,res) =>{
+router.get('/sell/:uuid', verifyToken, async (req, res) =>{
     const id = req.params.uuid;
     return res.render('sellbook',{
         id
