@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const {checkToken, verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin} = require('./verifyToken');
-const {Products, Carts} = require('../models');
+const {verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin} = require('./verifyToken');
+const {Products, Carts, User} = require('../models');
 
 //!CREATE
 router.post('/:uuid/:id', verifyTokenAndAuthorization, async (req, res)=>{    
@@ -38,13 +38,13 @@ router.post('/:uuid/:id', verifyTokenAndAuthorization, async (req, res)=>{
 });
 
 //!UPDATE
-router.put('/:uuid/:id', verifyTokenAndAuthorization, async (req,res) => {
+router.put('/:uuid/:id', verifyTokenAndAuthorization, async (req, res) => {
     
     try{
         const uuid = req.params.id;//id in url
         
         const UpdatedCart = await Carts.update(req.body,{
-            where: {uuid},//checls for same id in database
+            where: {uuid},
         });
 
         const updatedCartReport = await Carts.findOne({
@@ -56,12 +56,11 @@ router.put('/:uuid/:id', verifyTokenAndAuthorization, async (req,res) => {
             ...others} = updatedCartReport.dataValues;
 
         console.log({...others});
+        
+        console.log('user info updated');
 
         res.status(200).json({...others});// returns data updated
 
-        console.log('user info updated');
-
-       // console.log({...others});
     }catch(err){
         res.status(500).json(err);
         console.log(err);
@@ -88,13 +87,33 @@ router.delete('/:id/:uuid', verifyTokenAndAuthorization, async (req, res) =>{
 });
 
 
-//!GET CART
-router.get('/find/:id', verifyTokenAndAuthorization, async (req,res) => {
-    const id = req.params.id;
+//!GET All CART FROM A SPECIFIC USER
+router.get('/:id', verifyTokenAndAuthorization, async (req,res) => {
+    const uuid = req.params.id;
     try{
         
-        const cart = Carts.findOne({
-            where: {userId: id}
+        const user = await User.findAll({
+            where: {uuid},
+            include: 'carts'
+        });
+
+        console.log(user);
+        
+        res.status(200).json(user);
+    }catch(err){
+        res.status(500).json(err);
+    }
+});
+
+//!GET CART
+router.get('/:id/:uuid', verifyTokenAndAuthorization, async (req,res) => {
+    const uuid = req.params.uuid;
+    
+    try{
+        
+        const cart = await Carts.findOne({
+            where: {uuid},
+            include: 'users'
         });
 
         res.status(200).json(cart);

@@ -210,7 +210,7 @@ router.post('/login', async (req, res) => {
             // let previousUrl = req.headers.referer;
             // console.log(previousUrl, 'dsxza');
             // if (!previousUrl) {
-            //   // if the previous URL is not available, redirect to the homepage
+            //    if the previous URL is not available, redirect to the homepage
             //   res.redirect('/');
             //   console.log('ola');
             // } else {
