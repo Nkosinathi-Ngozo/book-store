@@ -1,5 +1,4 @@
 * {
-
     margin: 0;
     padding: 0;
     font-family: sans-serif;
@@ -173,6 +172,10 @@ h1 {
     outline: none;
     margin-top: 20px;
 }
+.form-signup .error{
+    
+}
+
 
 #Button-input, .submit-button {
     

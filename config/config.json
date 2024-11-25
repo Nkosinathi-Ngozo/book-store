@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "denyaccess123",
-    "database": "user_credentials",
+    "database": "book_store",
     "host": "localhost",
     "dialect": "mysql"
   },

@@ -144,7 +144,7 @@ router.put('/:uuid', verifyTokenAndAuthorization, async (req,res) => {
 
         res.status(200).json({...others});// returns data updated
 
-        console.log('user info updated');
+        console.log('product info updated');
 
        // console.log({...others});
     }catch(err){
@@ -257,14 +257,14 @@ router.get('/', async (req,res) =>{
             products = await Products.findAll({include: User});
         }
         console.log(products);
-        /*res.render('testimages', {
+        res.render('products', {
             data:{
-                images:products
+                products:products
             }
-        });*/
+        });
 
 
-        return res.status(200).json(products);
+        //return res.status(200).json(products);
     }catch(err){
         console.log(err);
         return res.status(500).json("An error occured");

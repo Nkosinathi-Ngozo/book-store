@@ -42,6 +42,6 @@ db.sequelize.sync().then((req) => {
     
 });
 
-app.listen(process.env.PORT || 3000, () =>{
-    console.log('backend server is running');
+app.listen(process.env.PORT || 5000, () =>{
+    console.log('backend server is running at localhost:5000');
 });

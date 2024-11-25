@@ -158,7 +158,10 @@ router.post('/login', async (req, res) => {
         } 
         
         if(validationError.length){
-            return console.log(errorMessage('Password, Email1'))
+            let emptyErr = errorMessage('Password and/or Email');
+            const message = req.flash("message", emptyErr);
+            
+            return res.redirect('/Login');// if email entered is wrong returns message
         }
 
         
@@ -168,7 +171,10 @@ router.post('/login', async (req, res) => {
         
         if(!user) {
             console.log('user email not found');
-            return validationError.push('user email not found');// if email entered is wrong returns message
+            validationError.push('user email not found');
+            const message = req.flash("message", validationError);
+            
+            return res.redirect('/Login');// if email entered is wrong returns message
         }
         const hashedPassword =  CryptoJS.AES.decrypt(
             user.password, 
@@ -180,7 +186,9 @@ router.post('/login', async (req, res) => {
         if(OriginalPassword !== req.body.password){
             console.log(OriginalPassword, req.body.password);
             console.log('password does not match email');
-            return validationError.push('password does not match email');
+            validationError.push('password does not match email');
+            const message = req.flash("message", validationError);
+            return res.redirect('/Login');// if email entered is wrong returns message
         }//! if entered password does not match password of the email found returns message
 
             const accessToken = jwt.sign(
