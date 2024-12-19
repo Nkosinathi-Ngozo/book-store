@@ -10,13 +10,13 @@ const productSchema = mongoose.Schema({
         type: String, 
         required: true,
         trim: true,
-        match: [/^[A-Za-z\s]+$/, 'Book title can only contain letters and spaces'] 
+        match: [/^[A-Za-z0-9\s]+$/, 'Book title can only contain letters, digits and spaces'] 
     },
     book_author: {
         type: String, 
         required: true,
         trim: true,
-        match: [/^[A-Za-z\s]+$/, 'Book author can only contain letters and spaces'] 
+        match: [/^[A-Za-z0-9\s]+$/, 'Book author can only contain letters, digits and spaces'] 
     },
     book_year: {
         type: String,

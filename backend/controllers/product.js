@@ -1,5 +1,6 @@
 const productService = require('../service/product');
-
+const cloudinary = require('../config/cloudinaryConfig');
+const fs = require('fs')
 const productController = {
 
     async getProductById(req, res){
@@ -14,23 +15,43 @@ const productController = {
         }
     },
 
-    async createProduct(req, res){
-        const {book_title, book_author, book_year, price, img} = req.body;
+    async createProduct(req, res) {
+        const { book_title, book_author, book_year, price } = req.body;
+        const img = req.file; // The uploaded image
 
         try {
-            const newProduct = {
-                book_title, 
-                book_author, 
-                book_year, 
-                price, 
-                img,
-                userId: req.user.id
+            if (img) {
+                // Log file details (optional)
+                console.log(`File Type: ${img.mimetype}`);
+
+                // Upload the image to Cloudinary directly from the buffer
+                const uploadResult = await cloudinary.uploader.upload(img.path, {
+                    folder: 'products',  // Optional folder structure
+                    resource_type: 'auto',  // Automatically detect file type
+                });
+    
+                const newProduct = {
+                    book_title,
+                    book_author,
+                    book_year,
+                    price,
+                    img: uploadResult.secure_url, // Use the Cloudinary URL
+                    userId: req.user.id,  // Assuming user is authenticated
+                };
+
+                // Save the product to the database (assuming productService is set up)
+                const savedProduct = await productService.createProduct(newProduct);
+
+                console.log('Product saved successfully');
+                // Send success response
+                res.status(200).json({ savedProduct, success: true });
+            } else {
+                console.log('Image is required');
+                res.status(400).json({ error: 'Image is required' });
             }
-            const savedProduct = await productService.createProduct(newProduct)
-            res.status(200).json(savedProduct);
         } catch (error) {
-            console.error('Error getting product:', error);
-            res.status(500).json({error})
+            console.error('Error creating product:', error);
+            res.status(500).json({ message: 'Failed to create product' });
         }
     },
 

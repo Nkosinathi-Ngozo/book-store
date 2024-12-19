@@ -1,12 +1,13 @@
 const router = require('express').Router();
 const productController = require('../controllers/product')
 const { verifyToken, verifyAdmin } = require('../middleware/auth')
+const upload = require('../middleware/upload')
 
 //! GET PRODUCT BY ID
 router.get("/find/:id", verifyToken, productController.getProductById);
 
 //! CREATE NEW PRODUCT
-router.post('/', verifyToken, productController.createProduct);
+router.post('/', verifyToken, upload.single('img'), productController.createProduct);
 
 //! GET ALL CARTS
 router.get('/', verifyToken, verifyAdmin, productController.getAllProducts);
