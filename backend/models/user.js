@@ -14,7 +14,6 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true,
         trim: true,
-        match: [/^\d{13}$/, 'ID number must be a 13-digit number']
     },
     email: {
         type: String,
@@ -25,7 +24,6 @@ const userSchema = new mongoose.Schema({
     phoneNumber: {
         type: String,
         required: true,
-        unique: true,
         trim: true,
         match: [/^0\d{9}$/, 'Phone number must be a valid 10-digit South African number starting with 0'] 
     },

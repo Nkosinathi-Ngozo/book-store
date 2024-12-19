@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
+    <style>
+        .error {
+          color: red;
+        }
+      </style>
+</head>
+
+<body class="sign">
+    <section class="SignUp-Box">
+        <h1>Login</h1>
+        <form class="form-signup" action="/auth/login" method="post">
+
+
+            <label>Username</label>
+            <input type="text" name="username" id="username" oninput="validateUsername()">
+            <em id="usernameError" class="error"></em>
+
+            <label>Email</label>
+            <input type="email" name="email" id="email" oninput="validateEmail()">
+            <em id="emailError" class="error"></em>
+
+            <label>Password</label>
+            <input type="password" name="password" id="password" oninput="validatePassword()">
+            <em id="passwordError" class="error"></em>
+
+            <p class="err"></p>
+            <button type="submit" id="" class="submit-button">submit</button>
+
+        </form>
+        <br>
+        <p>By clicking the Sign up button, you agree to our <br> <a href="#">Terms And Conditions</a> and <a
+                href="Login">Policy And Privacy</a></p>
+
+    </section>
+    <br>
+    <p class="paragraph-2">Don't have an account? <a href="Sign-up">Sign Up</p></a>
+
+    
+    <script src="../js/Login.js"></script>
+
+</body>
+
+</html>

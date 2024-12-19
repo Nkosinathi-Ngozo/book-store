@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
+    <script src="https://kit.fontawesome.com/4053b2de83.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="sign">
+    <section class="SignUp-Box">
+        <h1>Sign Up</h1>
+        <br>
+        <form class="form-signup" method="post">
+            <input type="text" name="first_name" placeholder="First Name" required>
+            <input type="text" name="last_name" placeholder="Last Name" required>
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="tel" name="phone_number" placeholder="Phone Number/Whatsapp" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="confirm" placeholder="Confirm Password" required>
+            <button type="submit" class="submit-button">Sign Up</button>
+        </form>
+        <br>
+        <p>By clicking the Sign Up button, you agree to our <a href="#">Terms And Conditions</a> and 
+            <a href="#">Policy And Privacy</a>.
+        </p>
+    </section>
+    <br>
+    <p class="paragraph-2">Already have an account? <a href="Login">Login here</a></p>
+
+    <!-- Popup for displaying errors -->
+    <div class="popup" style="display: none;">
+        <div class="overlay"></div>
+        <div class="popup-content">
+            <h2>Error</h2>
+            <div class="error-messages"></div>
+            <div class="controls">
+                <button class="close-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/Signup.js"></script>
+</body>
+
+</html>

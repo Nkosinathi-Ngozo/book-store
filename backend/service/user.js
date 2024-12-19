@@ -19,7 +19,6 @@ const userService = {
     async createUser(userData) {
         const newUser = new userModel(userData);
         await newUser.save();
-
         return newUser; // returns user
     },
 

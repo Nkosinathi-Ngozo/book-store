@@ -2,15 +2,19 @@ const jwt = require('jsonwebtoken'); // Ensure you have jwt installed
 
 // Middleware for user authentication
 const verifyToken = async (req, res, next) => {
-  const token = req.headers.authorization?.split('Bearer ')[1];
+  const token = req.cookies.jwt || req.headers.authorization?.split('Bearer ')[1];
 
+  console.log(`token: ${req.cookies.jwt}`)
   if (!token) {
-    return res.status(401).json({ error: 'Unauthorized: No token provided' });
+    console.log('Unauthorized: No token provided')
+    return res.status(401).json({ message: 'Unauthorized: No token provided' });
   }
 
   try {
-    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    jwt.verify(token, process.env.JWT_SEC, (err, decoded) => {
       if (err) {
+        console.log('Invalid token')
+
         return res.status(403).json({ message: 'Invalid token' });
       }
 

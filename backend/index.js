@@ -3,9 +3,10 @@ const app = express()
 const config = require('dotenv').config()
 const path = require('path')
 const cors = require('cors')
+const cookieParser = require('cookie-parser');
 const PORT = process.env.PORT || 5000
 const { connectDB } = require('./config/mongoConfig')
-const urlprefix = '/api'
+const urlprefix = '/api'  
 
  
 const authRoute = require('./routes/auth');
@@ -18,8 +19,9 @@ const productRoute = require('./routes/product');
 connectDB()
 
 
-app.use(cors())
+app.use(cors({credentials: true}))
 app.use(express.json())   
+app.use(cookieParser());
 
 
 app.use(`${urlprefix}/auth`, authRoute)
