@@ -9,8 +9,8 @@ router.get("/find/:id", verifyToken, productController.getProductById);
 //! CREATE NEW PRODUCT
 router.post('/', verifyToken, upload.single('img'), productController.createProduct);
 
-//! GET ALL CARTS
-router.get('/', verifyToken, verifyAdmin, productController.getAllProducts);
+//! GET ALL PRODUCTS 
+router.get('/', verifyToken, productController.getAllProducts);
 
 //! GET USER PRODUCT
 router.get("/:id", verifyToken, productController.getUserProducts);

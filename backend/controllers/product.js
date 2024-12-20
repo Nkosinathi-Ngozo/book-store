@@ -1,6 +1,7 @@
 const productService = require('../service/product');
 const cloudinary = require('../config/cloudinaryConfig');
-const fs = require('fs')
+const { unlink } = require('fs').promises;
+
 const productController = {
 
     async getProductById(req, res){
@@ -8,7 +9,7 @@ const productController = {
 
         try {
             const product = await productService.getProductById(id)
-            res.status(200).json(product);
+            res.status(200).json({ product, success: true });
         } catch (error) {
             console.error('Error getting product:', error);
             res.status(500).json({error})
@@ -44,6 +45,7 @@ const productController = {
 
                 console.log('Product saved successfully');
                 // Send success response
+                await unlink(img.path);
                 res.status(200).json({ savedProduct, success: true });
             } else {
                 console.log('Image is required');
@@ -59,7 +61,8 @@ const productController = {
 
         try {
             const products = await productService.getAllProducts()
-            res.status(200).json(products);
+            console.log(`products: ${products}`)
+            res.status(200).json({products, success: true});
         } catch (error) {
             console.error('Error getting products:', error);
             res.status(500).json({error})

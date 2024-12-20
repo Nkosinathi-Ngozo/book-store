@@ -20,7 +20,8 @@ const cartController = {
         try {
             let newCart = req.body
             newCart.userId = req.user.id
-            const savedOrder = await cartService.createCart(newOrder)
+            
+            const savedOrder = await cartService.createCart(newCart)
             res.status(200).json(savedOrder);
         } catch (error) {
             console.error('Error getting cart:', error);

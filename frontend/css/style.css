@@ -79,6 +79,15 @@
     color: #fff;
 }
 
+.content-choose {
+
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+}
+
 .content h1 {
     font-size: 70px;
     margin-top: 80px;
